@@ -1,0 +1,5 @@
+com\storeinventory\user\dto\UserDto.class
+com\storeinventory\user\model\User.class
+com\storeinventory\user\controller\UserController.class
+com\storeinventory\user\repository\UserRepository.class
+com\storeinventory\user\UserServiceApplication.class
