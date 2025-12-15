@@ -1,0 +1,37 @@
+# microservice-b-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice-b
+  template:
+    metadata:
+      labels:
+        app: microservice-b
+    spec:
+      containers:
+      - name: microservice-b
+        image: docker.io/library/ms-b:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8082
+
+---
+
+# microservice-b-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-b
+spec:
+  type: ClusterIP
+  selector:
+    app: microservice-b
+  ports:
+  - protocol: TCP
+    port: 8082  
+    targetPort: 8082

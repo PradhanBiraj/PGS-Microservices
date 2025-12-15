@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  labels:
+    app: user-service
+spec:
+  selector:
+    app: user-service
+  #type: NodePort
+  ports:
+    - port: 8083
+      targetPort: 8083
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+spec:
+  selector:
+    matchLabels:
+      app: user-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: user-service
+    spec:
+      containers:
+        - name: user-service
+          image: generalstore/user-service:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8083
+          env: # Setting Enviornmental Variables
+            - name: MY_SQL_DB_HOST # Setting Database host address from configMap
+              value: mysql-user
+            - name: MY_SQL_DB_USERNAME # Setting Database name from configMap
+              value: user
+            - name: MY_SQL_DB_PASSWORD # Setting Database password from Secret
+              value: password

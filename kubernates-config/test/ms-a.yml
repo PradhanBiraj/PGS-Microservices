@@ -1,0 +1,38 @@
+# microservice-a-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice-a
+  template:
+    metadata:
+      labels:
+        app: microservice-a
+    spec:
+      containers:
+      - name: microservice-a
+        image: docker.io/library/ms-a:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8081
+        
+
+---
+
+# microservice-a-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: microservice-a
+spec:
+  type: ClusterIP
+  selector:
+    app: microservice-a
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
