@@ -20,7 +20,7 @@ spec:
   selector:
     matchLabels:
       app: inventory-service
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: inventory-service
-          image: generalstore/inventory-service:latest
+          image: docker.io/library/inventory-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082

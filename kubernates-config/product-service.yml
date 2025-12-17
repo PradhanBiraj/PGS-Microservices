@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: product-service
-          image: generalstore/product-service:latest
+          image: docker.io/library/product-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081

@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: generalstore/user-service:latest
+          image: docker.io/library/user-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8083
